@@ -46,7 +46,7 @@ class RestController extends Controller
     	$post->content = $request->content;
     	$post->comments = 0;
     	$post->save();
-	return response()->json(['title' => $post->title,'content' => $post->content], 201, [], JSON_UNESCAPED_UNICODE);
+	return response()->json(['title' => $post->title, 'content' => $post->content], 201, [], JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -56,8 +56,11 @@ class RestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+	//以下の2行を追加
+    	$item = Post::find($id);
+    	return response()->json(['author' => $item->author, 'title' => $item->title, 'content' => $item->content, 'comments' => $item->comments], 201, [], JSON_UNESCAPED_UNICODE);
+
     }
 
     /**
