@@ -39,7 +39,7 @@ class RestController extends Controller
      */
     public function store(Request $request)
     {
-	//以下の5行を追加
+	//以下の7行を追加
         $post = new Post();
     	$post->author = 1;
     	$post->title = $request->title;
@@ -83,7 +83,14 @@ class RestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+	//以下の7行を追加
+        $item = Post::where('id',$id)->first();
+    	$item->author = 1;
+    	$item->title = $request->title;
+    	$item->content = $request->content;
+    	$item->comments = 0;
+    	$item->save();
+	return response()->json(['author' => $item->author, 'title' => $item->title, 'content' => $item->content, 'comments' => $item->comments], 201, [], JSON_UNESCAPED_UNICODE);
     }
 
     /**
