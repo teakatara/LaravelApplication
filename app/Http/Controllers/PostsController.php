@@ -39,7 +39,7 @@ class PostsController extends Controller{
     }
 
     public function do_update(Request $request){
-	$validatedData = $request->validate(['title' => 'String|max:20|required','content' => 'String|min:10|max:140|required',]);
+	$validatedData = $request->validate(['title' => 'String|max:20|required','content' => 'required|String|between:10,140',]);
     	$post = Post::where('id',$request->id)->first();
     	$post->author = 1;
     	$post->title = $request->title;

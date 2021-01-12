@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//ここ追加
+//以下の2行追加
 use App\Post;
+use App\Http\Requests\APIvalidation;
 
 
 class RestController extends Controller
@@ -37,9 +38,9 @@ class RestController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(APIvalidation $request)
     {
-	//以下の7行を追加
+	//以下の8行を追加
         $post = new Post();
     	$post->author = 1;
     	$post->title = $request->title;
@@ -81,9 +82,9 @@ class RestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(APIvalidation $request, $id)
     {
-	//以下の7行を追加
+	//以下の8行を追加
         $item = Post::where('id',$id)->first();
     	$item->author = 1;
     	$item->title = $request->title;
