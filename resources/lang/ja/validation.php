@@ -26,7 +26,7 @@ return [
     'between'              => [
         'numeric' => ':attributeは、:minから:maxの間で指定してください。',
         'file'    => ':attributeは、:min kBから、:max kBの間で指定してください。',
-        'string'  => ':attributeは、:min文字から、:max文字の間で指定してください。',
+        'string'  => '項目:attributeは:min～:max文字です。',
         'array'   => ':attributeは、:min個から:max個の間で指定してください。',
     ],
     'boolean'              => ':attributeは、trueかfalseを指定してください。',
@@ -78,7 +78,7 @@ return [
     'max'                  => [
         'numeric' => ':attributeには、:max以下の数字を指定してください。',
         'file'    => ':attributeには、:max kB以下のファイルを指定してください。',
-        'string'  => ':attributeは、:max文字以下で指定してください。',
+        'string'  => '項目:attributeは:max文字までです。',
         'array'   => ':attributeは:max個以下指定してください。',
     ],
     'mimes'                => ':attributeには:valuesタイプのファイルを指定してください。',
@@ -94,7 +94,7 @@ return [
     'numeric'              => ':attributeには、数字を指定してください。',
     'present'              => ':attributeが存在していません。',
     'regex'                => ':attributeに正しい形式を指定してください。',
-    'required'             => ':attributeは必ず指定してください。',
+    'required'             => '項目:attributeは入力必須です。',
     'required_if'          => ':otherが:valueの場合、:attributeも指定してください。',
     'required_unless'      => ':otherが:valuesでない場合、:attributeを指定してください。',
     'required_with'        => ':valuesを指定する場合は、:attributeも指定してください。',
