@@ -101,6 +101,8 @@ class RestController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //以下の2行を追加
+    	Post::destroy($id);
+	return response()->json(['destroy' => 'SUCCESS'], 201, [], JSON_UNESCAPED_UNICODE);	
     }
 }
