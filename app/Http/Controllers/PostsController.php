@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+//以下の1行を追加
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller{
     public function list(){
     	$posts = Post::orderBy('created_at','desc')->paginate(10);
-		return view('posts.list',['user' => Auth::user(), 'id' => Auth::id(), 'posts' => $posts]);
+    	//以下の2行を追加　return文を変更
+    	$user_model = new User;
+	$user_complex = array_column($user_model::all()->toArray(),'name','id');
+    	return view('posts.list',['user' => Auth::user(), 'id' => Auth::id(), 'posts' => $posts, 'users' => $user_complex]);
     }
 
     public function insert(){
@@ -20,7 +25,8 @@ class PostsController extends Controller{
     public function do_insert(Request $request){
 	$validatedData = $request->validate(['title' => 'required|String|max:20','content' => 'required|String|between:10,140',]);
     	$post = new Post();
-    	$post->author = 1;
+    	//以下の1行を変更
+    	$post->author = Auth::id();
     	$post->title = $request->title;
     	$post->content = $request->content;
     	$post->comments = 0;
@@ -41,7 +47,8 @@ class PostsController extends Controller{
     public function do_update(Request $request){
 	$validatedData = $request->validate(['title' => 'String|max:20|required','content' => 'required|String|between:10,140',]);
     	$post = Post::where('id',$request->id)->first();
-    	$post->author = 1;
+    	//以下の1行を変更
+    	$post->author = Auth::id();
     	$post->title = $request->title;
     	$post->content = $request->content;
     	$post->comments = 0;

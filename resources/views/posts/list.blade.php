@@ -18,6 +18,16 @@
 	<div>
 		<h1 class="bg-success"><a href="/">Laravel Sample Blog</a></h1>
 	</div>
+	<!--デバッグ用 <?php
+		echo count($users);
+		echo "<br>";
+		foreach($users as $key => $value){
+			echo $key;
+			echo ":";
+			echo $value;
+			echo "<br>";
+		}
+	?> -->
 	<table class="table">
 		<tr>
 			<th>著者</th>
@@ -28,7 +38,15 @@
 		</tr>
 		@foreach($posts as $post)
 			<tr>
-				<td>{{$post->author}}</td>
+				<!-- 以下のタグの部分を変更 -->
+				<td><?php
+					if(isset($users[$post->author])){
+						echo $users[$post->author];
+					} else {
+						echo "存在しないユーザー";
+					}
+				?></td>
+				<!-- <td>{{$post->author}}</td> -->
 				<td><a href="/post/{{$post->id}}">{{$post->title}}</a></td>
 				<td>{{$post->comments}}</td>
 				<td>{{date("Y/m/d H:i:s",strtotime($post->created_at))}}</td>
