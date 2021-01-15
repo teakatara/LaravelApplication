@@ -10,7 +10,9 @@
 		<h1 class="bg-success"><a href="/">Laravel Sample Blog</a></h1>
 	</div>
 	<font size="6">{{$posts->title}}</font><br>
-	<font size="2">{{$posts->content}}</font><br>
+	<!-- 以下の1行を追加 -->
+	<font size="2">著者(最終編集者)：{{$author_name}}</font><br>
+	<font size="4">{{$posts->content}}</font><br>
 	<a href="/"class="btn btn-warning btn btn-xs">戻る</a>
 </body>
 </html>

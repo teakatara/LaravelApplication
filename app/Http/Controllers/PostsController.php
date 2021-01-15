@@ -36,7 +36,14 @@ class PostsController extends Controller{
 
     public function show($id){
     	$item = Post::find($id);
-    	return view('posts.show',['posts' => $item]);
+    	//以下の6行を追加　return文を変更
+    	$author_model = new User;
+	if(isset($author_model::find($item->author)->name)){
+		$author_name = $author_model::find($item->author)->name;
+	} else {
+		$author_name = "存在しないユーザー";
+	}
+    	return view('posts.show',['posts' => $item, 'author_name' => $author_name]);
     }
 
     public function update($id){
